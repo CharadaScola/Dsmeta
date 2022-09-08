@@ -4,21 +4,26 @@ import "react-datepicker/dist/react-datepicker.css";
 import NotificationnButton from '../NotificationButton';
 import './styles.css';
 
+//Início da função.
+
 function SalesCard() {
 
-    const Min = new Date(new Date().setDate(new Date().getDate() - 365));
+    //Declarando as váriaveis do calendário.
+
+    const Min = new Date(new Date().setDate(new Date().getDate() - 365)); /**Declarando as variáveis que controlam as combos de data**/
     const Max = new Date;
 
     const [minDate, setMinDate] = useState(Min);
     const [maxDate,setmaxDate] = useState(Max);
 
+    //Organização da estrutura do site.
 
     return (
-        <div className="dsmeta-card">
+        <div className="dsmeta-card"> 
             <h2 className="dsmeta-sales-title">Vendas</h2>
             <div>
                 <div className="dsmeta-form-control-container">
-                    <DatePicker
+                    <DatePicker /**Primeira input com o calendário */
                         selected={minDate}
                         onChange={(date:Date) => setMinDate(date)}
                         className="dsmeta-form-control"
@@ -27,7 +32,7 @@ function SalesCard() {
 
                 </div>
                 <div className="dsmeta-form-control-container">
-                    <DatePicker
+                    <DatePicker /**Segunda input com o calendário */
                         selected={maxDate}
                         onChange={(date:Date) => setmaxDate(date)}
                         className="dsmeta-form-control"
@@ -40,7 +45,7 @@ function SalesCard() {
             <div>
                 <table className="dsmeta-sales-table">
                     <thead>
-                        <tr>
+                        <tr> {/*Personalizando o cabeçalho da tabela */}
                             <th className="show992">ID</th>
                             <th className="show576">DATA</th>
                             <th>Vendedor</th>
@@ -51,7 +56,7 @@ function SalesCard() {
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
+                        <tr> {/*Inserindo Dados nessa tabela*/}
                             <td className="show992">#341</td>
                             <td className="show576">08/07/2022</td>
                             <td>Anakin</td>
