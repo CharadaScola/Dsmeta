@@ -1,4 +1,5 @@
-import { useState } from "react";
+import axios from "axios";
+import { useEffect, useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import NotificationnButton from '../NotificationButton';
@@ -10,11 +11,18 @@ function SalesCard() {
 
     //Declarando as váriaveis do calendário.
 
-    const Min = new Date(new Date().setDate(new Date().getDate() - 365)); /**Declarando as variáveis que controlam as combos de data**/
-    const Max = new Date;
+    const min = new Date(new Date().setDate(new Date().getDate() - 365)); /**Declarando as variáveis que controlam as combos de data**/
+    const max = new Date();
 
-    const [minDate, setMinDate] = useState(Min);
-    const [maxDate,setmaxDate] = useState(Max);
+    const [minDate, setMinDate] = useState(min);
+    const [maxDate,setMaxDate] = useState(max);
+
+    useEffect(()=>{
+        axios.get("http://localhost:8080/sales")
+            .then(response => {
+                console.log(response.data);
+            })
+    },[]);
 
     //Organização da estrutura do site.
 
@@ -34,7 +42,7 @@ function SalesCard() {
                 <div className="dsmeta-form-control-container">
                     <DatePicker /**Segunda input com o calendário */
                         selected={maxDate}
-                        onChange={(date:Date) => setmaxDate(date)}
+                        onChange={(date:Date) => setMaxDate(date)}
                         className="dsmeta-form-control"
                         dateFormat="dd/MM/yyyy"
                     />
